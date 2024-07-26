@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Team Combinations</title>
+        <title>First Stage</title>
     </head>
     <body>
-        <h1>Team Combinations</h1>
-        <ul>
-            {% for combination in combinations %}
-                <li>{{ combination.0}} - {{ combination.1}}</li>
-            {% endfor %}
-        </ul>
+        <h1>First Stage</h1>
+        <form method="post" action="{% url 'second_stage' %}">
+            {% csrf_token %}
+            <ul>
+                {% for combination in combinations %}
+                    <li>
+                        <span>{{ combination.0 }} vs {{ combination.1 }}</span>
+                        <input type="number" name="team_a" style="display: inline-block;" required>
+                        <pre style="display: inline-block;"> VS </pre>
+                        <input type="number" name="team_b" style="display: inline-block;" required>
+                    </li>
+                {% endfor %}
+            </ul>
+            <input type="submit" value="Submit">
+        </form>
     </body>
 </html>
