@@ -10,10 +10,9 @@
             <ul>
                 {% for combination in combinations %}
                     <li>
-                        <span>{{ combination.0 }} vs {{ combination.1 }}</span>
-                        <input type="number" name="team_a" style="display: inline-block;" required>
-                        <pre style="display: inline-block;"> VS </pre>
-                        <input type="number" name="team_b" style="display: inline-block;" required>
+                        <span >{{ combination.0 }} vs {{ combination.1 }}</span>
+                        {{ form.as_p }}
+                       
                     </li>
                 {% endfor %}
             </ul>

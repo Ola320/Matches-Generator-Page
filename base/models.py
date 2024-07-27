@@ -25,3 +25,10 @@ class Team(models.Model):
 
     def __str__(self):
         return self.team_n.team_name
+    
+
+class Score_board(models.Model):
+    team = models.ForeignKey(Team,on_delete=models.CASCADE)
+    points = models.IntegerField()
+    def __str__(self):
+        return str(self.points)
