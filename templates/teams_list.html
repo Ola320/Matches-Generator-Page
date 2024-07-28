@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
     <head>
         <title>First Stage</title>
@@ -11,12 +11,40 @@
                 {% for combination in combinations %}
                     <li>
                         <span >{{ combination.0 }} vs {{ combination.1 }}</span>
+                        {{ formset.managment_form }}
                         {{ form.as_p }}
-                       
+                        
                     </li>
                 {% endfor %}
             </ul>
             <input type="submit" value="Submit">
         </form>
     </body>
+</html>
+
+<!-- teams_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Teams List</title>
+</head>
+<body>
+    <h1>Teams List</h1>
+    <form method="post">
+        {{ formset.management_form }}
+        {% for form in formset %}
+            <div>
+                {{ form.as_p }}
+            </div>
+        {% endfor %}
+        <button type="submit">Zapisz</button>
+    </form>
+
+    <h2>Kombinacje zespołów:</h2>
+    <ul>
+        {% for combination in combinations %}
+            <li>{{ combination.0 }} vs {{ combination.1 }}</li>
+        {% endfor %}
+    </ul>
+</body>
 </html>

@@ -2,7 +2,9 @@ from django.http import HttpResponse,HttpResponseRedirect
 import datetime
 from django.shortcuts import render,redirect
 import itertools 
-
+from .forms import FirstStage
+from .forms import ScoreBoardFormSet
+from .models import Team
 
 
 
@@ -19,11 +21,6 @@ def players_list(request):
 
 
 def teams_list_view(request):
-    from .forms import FirstStage
-    from .models import Team  
-    
-
-    
     team_list = list(Team.objects.all())
     combinations = list(itertools.combinations(team_list, 2))
 
@@ -33,9 +30,10 @@ def teams_list_view(request):
             form.save()
             return HttpResponseRedirect('/second_stage/')
     else:
-        form = FirstStage
+        formset = ScoreBoardFormSet(queryset=FirstStage)
 
-    return render(request,'teams_list.html',{'form':form,'combinations':combinations})
+    print("Formset forms:", formset.forms)
+    return render(request,'teams_list.html',{'formset':formset,'combinations':combinations})
 
 
 def second_stage(request):

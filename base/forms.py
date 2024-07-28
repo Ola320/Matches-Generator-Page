@@ -1,13 +1,12 @@
 from django import forms
-from .views import teams_list_view
 from .models import Score_board
+from django.forms import modelformset_factory
 
 class FirstStage(forms.ModelForm):
-    class Mets:
+    class Meta:
         model = Score_board
-        fields = ['team','points']
+        fields = "__all__"
 
-
-
+ScoreBoardFormSet = modelformset_factory(Score_board,form = FirstStage, extra = 3)
 
 
